@@ -26,26 +26,48 @@ Requirements:
 <body>
   <div class="container-fluid p-2">
     <h3>Tip Calculator</h3>
-    <form>
+    <form onsubmit="event.preventDefault(); calculateTipAndTotal()">
       <label for="mealCost">Cost of Meal  $</label>
-      <input type="text" name="mealCost"></input><br>
+      <input type="text" id="mealCost"><br>
+
       <label>Tip amount:</label><br>
-      <input type="radio" name="fivePerc" value="0.05"></input>
+      <input type="radio" id="fivePerc" name="tipPercent" value="0.05">
       <label for="fivePerc">5%</label><br>
-      <input type="radio" name="tenPerc" value="0.1"></input>
+      <input type="radio" id="tenPerc" name="tipPercent" value="0.1">
       <label for="tenPerc">10%</label><br>
-      <input type="radio" name="fifteenPerc" value="0.15"></input>
+      <input type="radio" id="fifteenPerc" name="tipPercent" value="0.15">
       <label for="fifteenPerc">15%</label><br>
-      <input type="radio" name="twentyPerc" value="0.2"></input>
+      <input type="radio" id="twentyPerc" name="tipPercent" value="0.2">
       <label for="twentyPerc">20%</label><br>
-      <input type="radio" name="other" value=""></input>
-      <label for="other">Other: <input type="text" name="otherPerc"></input> %</label><br> <!-- label for? -->
-      <input type="submit" value="Find the total" class="mt-2"></input>
-    </form>
+      <!-- <input type="radio" id="other" name="tipPercent" value="">
+      <label for="other">Other: <input type="text" id="otherPerc"> %</label><br> -->
+
+      <input type="submit" value="Find the total" class="mt-2">
+    </form><br>
+    <p id="tipResult"></p>
+    <p id="totalResult"></p>
   </div>
 
+  <script>
+    function calculateTipAndTotal() {
+      const tipResult = document.getElementById("tipResult");
+      const totalResult = document.getElementById("totalResult");
+      const billAmount = document.getElementById("mealCost").value;
+      let tipPercentage = document.querySelector('input[name="tipPercent"]:checked').value;
 
-  <script></script>
+      // if (document.querySelector('input[name="tipPercent"]:checked') && document.getElementById("other")) {
+      //   tipPercentage = document.getElementById("other").value;
+      // }
+
+      let tipAmount = billAmount * tipPercentage;
+      let totalAmount = Number(tipAmount) + Number(billAmount);
+
+      tipResult.innerText = `Tip amount: $${tipAmount.toFixed(2)}`;
+      tipResult.style.color = "green";
+      totalResult.innerText = `Total: $${totalAmount.toFixed(2)}`;
+      totalResult.style.color = "green";
+    }
+  </script>
 </body>
 
 </html>
