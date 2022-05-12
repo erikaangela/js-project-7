@@ -24,13 +24,13 @@ Requirements:
 </head>
 
 <body>
-  <div class="container-fluid p-2">
-    <h3>Tip Calculator</h3>
+  <div class="container-fluid p-2 text-center">
+    <h3 class="display-6">Tip Calculator</h3>
     <form onsubmit="event.preventDefault(); calculateTipAndTotal()">
-      <label for="mealCost">Cost of Meal  $</label>
+      <label for="mealCost" class="lead">Cost of Meal  $</label>
       <input type="text" id="mealCost"><br>
 
-      <label>Tip amount:</label><br>
+      <label class="lead">Tip amount:</label><br>
       <input type="radio" id="fivePerc" name="tipPercent" value="0.05">
       <label for="fivePerc">5%</label><br>
       <input type="radio" id="tenPerc" name="tipPercent" value="0.1">
@@ -42,7 +42,7 @@ Requirements:
       <!-- <input type="radio" id="other" name="tipPercent" value="">
       <label for="other">Other: <input type="text" id="otherPerc"> %</label><br> -->
 
-      <input type="submit" value="Find the total" class="mt-2">
+      <input type="submit" value="Find the total" class="btn btn-success mt-2">
     </form><br>
     <p id="tipResult"></p>
     <p id="totalResult"></p>
@@ -66,6 +66,8 @@ Requirements:
       tipResult.style.color = "green";
       totalResult.innerText = `Total: $${totalAmount.toFixed(2)}`;
       totalResult.style.color = "green";
+
+      document.getElementById("mealCost").value = "";
     }
   </script>
 </body>
